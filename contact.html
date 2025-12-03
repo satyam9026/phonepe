@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe - Contact Us</title>
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0iIzVmMjU5ZiIvPjwvc3ZnPg==">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-purple: #5f259f;
+            --secondary-purple: #7d47ce;
+            --light-purple: #f5f0ff;
+            --dark-gray: #333;
+            --medium-gray: #666;
+            --light-gray: #f8f8f8;
+            --border-gray: #e0e0e0;
+            --white: #ffffff;
+            --black: #000000;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-purple);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--dark-gray);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-purple);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-purple);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 300px;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .close-nav {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .mobile-nav-links a.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-purple) 0%, #e8e0ff 100%);
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMEw2MDAgNDAwIiBzdHJva2U9IiM3RDQ3Q0UiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMjAgMjAiLz48cGF0aCBkPSJNMCAxMDBMNjAwIDUwMCIgc3Ryb2tlPSIjN0Q0N0NFIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjIwIDIwIi8+PC9zdmc+');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-purple);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Contact Tabs */
+        .contact-tabs {
+            padding: 60px 0;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .tab-btn {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--medium-gray);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-purple);
+            border-bottom: 3px solid var(--primary-purple);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-purple);
+        }
+
+        .tab-content {
+            width: 100%;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Customer Support Card */
+        .support-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .support-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .support-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary-purple);
+            font-size: 24px;
+        }
+
+        .support-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .option-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 25px;
+            transition: var(--transition);
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .option-icon {
+            font-size: 32px;
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+        }
+
+        .option-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .option-card p {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Address Section */
+        .address-section {
+            background-color: var(--light-gray);
+        }
+
+        .address-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .address-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .address-info h2 {
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-purple);
+        }
+
+        .address-info ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .address-info ul li:before {
+            content: "•";
+            color: var(--primary-purple);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-gray);
+            font-weight: 600;
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                padding: 80px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .tabs-header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .support-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .support-options {
+                grid-template-columns: 1fr;
+            }
+
+            .address-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <svg class="logo-img" viewBox="0 0 132 48" fill="none">
+                    <circle cx="17.9" cy="24" r="17.9" fill="#5f259f" />
+                    <path
+                        d="M90.5 34.2v-6.5c0-1.6-.6-2.4-2.1-2.4-.6 0-1.3.1-1.7.2V35c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V23.9c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 5.6 1.9 5.6 5.4v7.4c0 .3-.3.6-.6.6H92c-.9 0-1.5-.7-1.5-1.5zm9-3.9l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H103.2v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zm25.5 2.2l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H128.6v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zM66 35.7h1.4c.3 0 .6-.3.6-.6v-7.4c0-3.4-1.8-5.4-4.8-5.4-.9 0-1.9.2-2.5.4V19c0-.8-.7-1.5-1.5-1.5h-1.4c-.3 0-.6.3-.6.6v17c0 .3.3.6.6.6h2.3c.3 0 .6-.3.6-.6v-9.4c.5-.2 1.2-.3 1.7-.3 1.5 0 2.1.7 2.1 2.4v6.5c.1.7.7 1.4 1.5 1.4zm15.1-8.4V31c0 3.1-2.1 5-5.6 5-3.4 0-5.6-1.9-5.6-5v-3.7c0-3.1 2.1-5 5.6-5 3.5 0 5.6 1.9 5.6 5zm-3.5 0c0-1.2-.7-2-2-2s-2 .7-2 2V31c0 1.2.7 1.9 2 1.9s2-.7 2-1.9v-3.7zm-22.3-1.7c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zM51.7 23c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23zm68.2 2.6c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zm-3.6-2.6c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23z"
+                        fill="#5f259f" />
+                    <path
+                        d="M26 19.3c0-.7-.6-1.3-1.3-1.3h-2.4l-5.5-6.3c-.5-.6-1.3-.8-2.1-.6l-1.9.6c-.3.1-.4.5-.2.7l6 5.7H9.5c-.3 0-.5.2-.5.5v1c0 .7.6 1.3 1.3 1.3h1.4v4.8c0 3.6 1.9 5.7 5.1 5.7 1 0 1.8-.1 2.8-.5v3.2c0 .9.7 1.6 1.6 1.6h1.4c.3 0 .6-.3.6-.6V20.8h2.3c.3 0 .5-.2.5-.5v-1zm-6.4 8.6c-.6.3-1.4.4-2 .4-1.6 0-2.4-.8-2.4-2.6v-4.8h4.4v7z"
+                        fill="white" />
+                </svg>
+            </div>
+
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="complaint.html">Complaint</a></li>
+                    <li><a href="OurSolutions.html">Our Solutions</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li>
+                    <li><a href="Trust&Safety.html">Trust & Safety</a></li>
+                    <li><a href="Registration.html">Registration</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <svg class="logo-img" viewBox="0 0 132 48" fill="none" style="height: 30px;">
+                    <circle cx="17.9" cy="24" r="17.9" fill="#5f259f" />
+                    <path
+                        d="M90.5 34.2v-6.5c0-1.6-.6-2.4-2.1-2.4-.6 0-1.3.1-1.7.2V35c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V23.9c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 5.6 1.9 5.6 5.4v7.4c0 .3-.3.6-.6.6H92c-.9 0-1.5-.7-1.5-1.5zm9-3.9l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H103.2v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zm25.5 2.2l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H128.6v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zM66 35.7h1.4c.3 0 .6-.3.6-.6v-7.4c0-3.4-1.8-5.4-4.8-5.4-.9 0-1.9.2-2.5.4V19c0-.8-.7-1.5-1.5-1.5h-1.4c-.3 0-.6.3-.6.6v17c0 .3.3.6.6.6h2.3c.3 0 .6-.3.6-.6v-9.4c.5-.2 1.2-.3 1.7-.3 1.5 0 2.1.7 2.1 2.4v6.5c.1.7.7 1.4 1.5 1.4zm15.1-8.4V31c0 3.1-2.1 5-5.6 5-3.4 0-5.6-1.9-5.6-5v-3.7c0-3.1 2.1-5 5.6-5 3.5 0 5.6 1.9 5.6 5zm-3.5 0c0-1.2-.7-2-2-2s-2 .7-2 2V31c0 1.2.7 1.9 2 1.9s2-.7 2-1.9v-3.7zm-22.3-1.7c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zM51.7 23c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23zm68.2 2.6c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zm-3.6-2.6c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23z"
+                        fill="#5f259f" />
+                    <path
+                        d="M26 19.3c0-.7-.6-1.3-1.3-1.3h-2.4l-5.5-6.3c-.5-.6-1.3-.8-2.1-.6l-1.9.6c-.3.1-.4.5-.2.7l6 5.7H9.5c-.3 0-.5.2-.5.5v1c0 .7.6 1.3 1.3 1.3h1.4v4.8c0 3.6 1.9 5.7 5.1 5.7 1 0 1.8-.1 2.8-.5v3.2c0 .9.7 1.6 1.6 1.6h1.4c.3 0 .6-.3.6-.6V20.8h2.3c.3 0 .5-.2.5-.5v-1zm-6.4 8.6c-.6.3-1.4.4-2 .4-1.6 0-2.4-.8-2.4-2.6v-4.8h4.4v7z"
+                        fill="white" />
+                </svg>
+            </div>
+            <div class="close-nav" id="closeNav">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="complaint.html">Complaint
+                </a></li>
+            <li><a href="OurSolutions.html">Our Solutions</a></li>
+            <li><a href="contact.html" class="active">Contact Us</a></li>
+            <li><a href="Trust&Safety.html">Trust & Safety</a></li>
+            <li><a href="Registration.html">Registration</a></li>
+        </ul>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>We are here to help you! Get help for issues with PhonePe payments, pending payments, failed payments
+                    & more. Get support for onboarding as a PhonePe merchant and using PhonePe for your business.</p>
+                <a href="#contact-tabs" class="btn">Get Help Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Tabs Section -->
+    <section class="contact-tabs" id="contact-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="customer">Customer Support</button>
+                    <button class="tab-btn" data-tab="merchant">Merchant Support</button>
+                    <button class="tab-btn" data-tab="online">Online Merchant Support</button>
+                    <button class="tab-btn" data-tab="fraud">Report Fraud</button>
+                    <button class="tab-btn" data-tab="ethics">Report Ethics Concerns</button>
+                </div>
+
+                <!-- Customer Support Tab -->
+                <div class="tab-content active" id="customer-tab">
+                    <div class="support-card">
+                        <div class="support-header">
+                            <div class="support-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="support-info">
+                                <h3>Customer Support</h3>
+                                <p>To get instant help, tap on your PhonePe app home screen & select the relevant topic.
+                                    OR tap below.</p>
+                            </div>
+                        </div>
+
+                        <div class="support-options">
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <h4>Get Help via App</h4>
+                                <p>Open your PhonePe app, tap on the help icon and select your issue category for
+                                    instant support.</p>
+                                <a href="#" class="btn">Open Help Center</a>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <h4>Contact by Phone</h4>
+                                <p>Speak directly with our customer support representatives for personalized assistance.
+                                </p>
+                                <a href="tel:18001081122" class="btn">Call 1800-108-1122</a>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h4>Email Support</h4>
+                                <p>Send us an email with your query and we'll get back to you within 24 hours.</p>
+                                <a href="mailto:support@phonepe.com" class="btn">Email Us</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-card">
+                        <h3>Grievances & Ombudsman</h3>
+                        <div class="support-options">
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h4>Grievances</h4>
+                                <p>Get in touch with us to escalate any existing complaints, and we will ensure a quick
+                                    resolution.</p>
+                                <a href="#" class="btn btn-outline">Send a Message</a>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <h4>Ombudsman</h4>
+                                <p>You can direct your complaints to our regulating authority by sending them a message.
+                                </p>
+                                <a href="#" class="btn btn-outline">Know More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Merchant Support Tab -->
+                <div class="tab-content" id="merchant-tab">
+                    <div class="support-card">
+                        <div class="support-header">
+                            <div class="support-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="support-info">
+                                <h3>Merchant Support</h3>
+                                <p>Get support for your business-related payments, onboarding and merchant services.</p>
+                            </div>
+                        </div>
+
+                        <div class="support-options">
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                                <h4>Offline Payments</h4>
+                                <p>Accept payments & get notified instantly for your offline business transactions.</p>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <h4>Payment Gateway</h4>
+                                <p>Accept online payments seamlessly through our secure payment gateway.</p>
+                                <a href="#" class="btn">Get Started</a>
+                            </div>
+
+                            <div class="option-card">
+                                <div class="option-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h4>Partner Program</h4>
+                                <p>Enable in-store payments and grow your earnings with our partner program.</p>
+                                <a href="#" class="btn">Join Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other tabs would follow similar structure -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Address Section -->
+    <section class="address-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-purple);">
+                Our Registered Address
+            </h2>
+
+            <div class="address-container">
+
+                <!-- LEFT SIDE ADDRESS INFO -->
+                <div class="address-info">
+                    <h2>Registered Address</h2>
+                    <ul>
+                        <li>PhonePe Limited</li>
+                        <li>(Formerly known as 'PhonePe Private Limited')</li>
+                        <li>Office-2, Floor 5, Wing A, Block A,</li>
+                        <li>Salarpuria Softzone, Bellandur Village,</li>
+                        <li>Varthur Hobli, Outer Ring Road, Bangalore South,</li>
+                        <li>Bangalore, Karnataka, India, 560103</li>
+                        <li>CIN: U67190KA2012PLC176031</li>
+                    </ul>
+
+                    <div style="margin-top: 30px;">
+                        <a href="https://www.google.com/maps/place/Salarpuria+Softzone/@12.9242528,77.667897,17z/data=!3m1!4b1!4m5!3m4!1s0x3bae13760d58dd77:0x5d1703aa07d3ea8b!8m2!3d12.9242528!4d77.6700857"
+                            target="_blank" class="btn">
+                            <i class="fas fa-map-marker-alt"></i> View in Maps
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE LIVE GOOGLE MAP -->
+                <div class="map-placeholder" style="width:100%; height:350px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.095703340177!2d77.667897!3d12.9242528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13760d58dd77%3A0x5d1703aa07d3ea8b!2sSalarpuria%20Softzone!5e0!3m2!1sen!2sin!4v1700000000000"
+                        width="100%" height="100%" style="border:0; border-radius: 10px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Business Solutions</h3>
+                    <div class="footer-links">
+                        <a href="#">Payment Gateway</a>
+                        <a href="#">E-commerce PG</a>
+                        <a href="#">UPI Payment Gateway</a>
+                        <a href="#">Offline Merchant</a>
+                        <a href="#">Payment Links</a>
+                        <a href="#">Travel and Commute</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Insurance</h3>
+                    <div class="footer-links">
+                        <a href="#">Motor Insurance</a>
+                        <a href="#">Bike Insurance</a>
+                        <a href="#">Car Insurance</a>
+                        <a href="#">Health Insurance</a>
+                        <a href="#">Life Insurance</a>
+                        <a href="#">Travel Insurance</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Investments</h3>
+                    <div class="footer-links">
+                        <a href="#">24K Gold</a>
+                        <a href="#">Liquid Funds</a>
+                        <a href="#">Tax Saving Funds</a>
+                        <a href="#">Equity Funds</a>
+                        <a href="#">Debt Funds</a>
+                        <a href="#">Hybrid Funds</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>General</h3>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Investors Relations</a>
+                        <a href="#" class="active">Contact Us</a>
+                        <a href="#">Press</a>
+                        <a href="#">Blog</a>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025, All rights reserved</p>
+                <p style="margin-top: 10px; font-style: italic; font-weight: 100;">*These are company numbers as of
+                    March, 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const closeNav = document.getElementById('closeNav');
+        const mobileNav = document.getElementById('mobileNav');
+        const navOverlay = document.getElementById('navOverlay');
+
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeNav.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        navOverlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Tab Switching Functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                // Show corresponding tab content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        navOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Initialize with first tab active
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make sure first tab is active
+            if (tabButtons.length > 0 && !document.querySelector('.tab-btn.active')) {
+                tabButtons[0].classList.add('active');
+            }
+
+            if (tabContents.length > 0 && !document.querySelector('.tab-content.active')) {
+                tabContents[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe - Our Solutions</title>
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0iIzVmMjU5ZiIvPjwvc3ZnPg==">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-purple: #5f259f;
+            --secondary-purple: #7d47ce;
+            --light-purple: #f5f0ff;
+            --dark-gray: #333;
+            --medium-gray: #666;
+            --light-gray: #f8f8f8;
+            --border-gray: #e0e0e0;
+            --white: #ffffff;
+            --black: #000000;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --success-green: #28a745;
+            --warning-orange: #ffc107;
+            --info-blue: #17a2b8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-purple);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--dark-gray);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-purple);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-purple);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 300px;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .close-nav {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .mobile-nav-links a.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-purple) 0%, #e8e0ff 100%);
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMEw2MDAgNDAwIiBzdHJva2U9IiMxN2EyYjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMjAgMjAiLz48cGF0aCBkPSJNMCAxMDBMNjAwIDUwMCIgc3Ryb2tlPSIjMTdhMmI4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjIwIDIwIi8+PC9zdmc+');
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-purple);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Solutions Tabs */
+        .solutions-tabs {
+            padding: 60px 0;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .tab-btn {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--medium-gray);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-purple);
+            border-bottom: 3px solid var(--primary-purple);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-purple);
+        }
+
+        .tab-content {
+            width: 100%;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Solutions Cards */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .solution-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--light-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-purple);
+            font-size: 28px;
+        }
+
+        .solution-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-purple);
+        }
+
+        .solution-card p {
+            font-size: 15px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .solution-features {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .solution-features li {
+            margin-bottom: 8px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .solution-features li:before {
+            content: "✓";
+            color: var(--success-green);
+            position: absolute;
+            left: -15px;
+            font-weight: bold;
+        }
+
+        /* Business Section */
+        .business-section {
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: var(--primary-purple);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-purple);
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .business-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .business-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .business-img {
+            height: 200px;
+            background-color: var(--light-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-purple);
+            font-size: 60px;
+        }
+
+        .business-content {
+            padding: 25px;
+        }
+
+        .business-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-purple);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-purple) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--light-purple);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .solutions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                padding: 80px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .tabs-header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .solution-card {
+                padding: 25px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <svg class="logo-img" viewBox="0 0 132 48" fill="none">
+                    <circle cx="17.9" cy="24" r="17.9" fill="#5f259f" />
+                    <path
+                        d="M90.5 34.2v-6.5c0-1.6-.6-2.4-2.1-2.4-.6 0-1.3.1-1.7.2V35c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V23.9c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 5.6 1.9 5.6 5.4v7.4c0 .3-.3.6-.6.6H92c-.9 0-1.5-.7-1.5-1.5zm9-3.9l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H103.2v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zm25.5 2.2l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H128.6v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zM66 35.7h1.4c.3 0 .6-.3.6-.6v-7.4c0-3.4-1.8-5.4-4.8-5.4-.9 0-1.9.2-2.5.4V19c0-.8-.7-1.5-1.5-1.5h-1.4c-.3 0-.6.3-.6.6v17c0 .3.3.6.6.6h2.3c.3 0 .6-.3.6-.6v-9.4c.5-.2 1.2-.3 1.7-.3 1.5 0 2.1.7 2.1 2.4v6.5c.1.7.7 1.4 1.5 1.4zm15.1-8.4V31c0 3.1-2.1 5-5.6 5-3.4 0-5.6-1.9-5.6-5v-3.7c0-3.1 2.1-5 5.6-5 3.5 0 5.6 1.9 5.6 5zm-3.5 0c0-1.2-.7-2-2-2s-2 .7-2 2V31c0 1.2.7 1.9 2 1.9s2-.7 2-1.9v-3.7zm-22.3-1.7c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zM51.7 23c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23zm68.2 2.6c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zm-3.6-2.6c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23z"
+                        fill="#5f259f" />
+                    <path
+                        d="M26 19.3c0-.7-.6-1.3-1.3-1.3h-2.4l-5.5-6.3c-.5-.6-1.3-.8-2.1-.6l-1.9.6c-.3.1-.4.5-.2.7l6 5.7H9.5c-.3 0-.5.2-.5.5v1c0 .7.6 1.3 1.3 1.3h1.4v4.8c0 3.6 1.9 5.7 5.1 5.7 1 0 1.8-.1 2.8-.5v3.2c0 .9.7 1.6 1.6 1.6h1.4c.3 0 .6-.3.6-.6V20.8h2.3c.3 0 .5-.2.5-.5v-1zm-6.4 8.6c-.6.3-1.4.4-2 .4-1.6 0-2.4-.8-2.4-2.6v-4.8h4.4v7z"
+                        fill="white" />
+                </svg>
+            </div>
+
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="complaint.html">Complaint</a></li>
+                    <li><a href="OurSolutions.html" class="active">Our Solutions</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="Trust&Safety.html">Trust & Safety</a></li>
+                    <li><a href="Registration.html">Registration</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <svg class="logo-img" viewBox="0 0 132 48" fill="none" style="height: 30px;">
+                    <circle cx="17.9" cy="24" r="17.9" fill="#5f259f" />
+                    <path
+                        d="M90.5 34.2v-6.5c0-1.6-.6-2.4-2.1-2.4-.6 0-1.3.1-1.7.2V35c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V23.9c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 5.6 1.9 5.6 5.4v7.4c0 .3-.3.6-.6.6H92c-.9 0-1.5-.7-1.5-1.5zm9-3.9l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H103.2v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zm25.5 2.2l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H128.6v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zM66 35.7h1.4c.3 0 .6-.3.6-.6v-7.4c0-3.4-1.8-5.4-4.8-5.4-.9 0-1.9.2-2.5.4V19c0-.8-.7-1.5-1.5-1.5h-1.4c-.3 0-.6.3-.6.6v17c0 .3.3.6.6.6h2.3c.3 0 .6-.3.6-.6v-9.4c.5-.2 1.2-.3 1.7-.3 1.5 0 2.1.7 2.1 2.4v6.5c.1.7.7 1.4 1.5 1.4zm15.1-8.4V31c0 3.1-2.1 5-5.6 5-3.4 0-5.6-1.9-5.6-5v-3.7c0-3.1 2.1-5 5.6-5 3.5 0 5.6 1.9 5.6 5zm-3.5 0c0-1.2-.7-2-2-2s-2 .7-2 2V31c0 1.2.7 1.9 2 1.9s2-.7 2-1.9v-3.7zm-22.3-1.7c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zM51.7 23c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23zm68.2 2.6c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zm-3.6-2.6c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23z"
+                        fill="#5f259f" />
+                    <path
+                        d="M26 19.3c0-.7-.6-1.3-1.3-1.3h-2.4l-5.5-6.3c-.5-.6-1.3-.8-2.1-.6l-1.9.6c-.3.1-.4.5-.2.7l6 5.7H9.5c-.3 0-.5.2-.5.5v1c0 .7.6 1.3 1.3 1.3h1.4v4.8c0 3.6 1.9 5.7 5.1 5.7 1 0 1.8-.1 2.8-.5v3.2c0 .9.7 1.6 1.6 1.6h1.4c.3 0 .6-.3.6-.6V20.8h2.3c.3 0 .5-.2.5-.5v-1zm-6.4 8.6c-.6.3-1.4.4-2 .4-1.6 0-2.4-.8-2.4-2.6v-4.8h4.4v7z"
+                        fill="white" />
+                </svg>
+            </div>
+            <div class="close-nav" id="closeNav">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="complaint.html">Complaint</a></li>
+            <li><a href="OurSolutions.html" class="active">Our Solutions</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="Trust&Safety.html">Trust & Safety</a></li>
+            <li><a href="Registration.html">Registration</a></li>
+        </ul>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Solutions</h1>
+                <p>PhonePe offers a comprehensive suite of digital payment and financial services designed to simplify
+                    your life. From seamless UPI payments to insurance and investments, we have solutions for everyone.
+                </p>
+                <a href="#solutions-tabs" class="btn">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Tabs Section -->
+    <section class="solutions-tabs" id="solutions-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="personal">Personal</button>
+                    <button class="tab-btn" data-tab="business">Business</button>
+                    <button class="tab-btn" data-tab="financial">Financial Services</button>
+                    <button class="tab-btn" data-tab="merchant">Merchant Solutions</button>
+                    <button class="tab-btn" data-tab="developer">Developer APIs</button>
+                </div>
+
+                <!-- Personal Solutions Tab -->
+                <div class="tab-content active" id="personal-tab">
+                    <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-purple);">
+                        Personal Payment Solutions
+                    </h2>
+
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>UPI Payments</h3>
+                            <p>Send and receive money instantly using UPI ID, mobile number, or QR code. Bank-to-bank
+                                transfers with zero transaction fees.</p>
+                            <ul class="solution-features">
+                                <li>Instant money transfer 24/7</li>
+                                <li>No transaction fees</li>
+                                <li>Link multiple bank accounts</li>
+                                <li>Scan & pay with QR codes</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Learn More</a>
+                        </div>
+
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h3>Bill Payments</h3>
+                            <p>Pay all your utility bills - electricity, water, gas, DTH, mobile recharge, and broadband
+                                - from a single platform.</p>
+                            <ul class="solution-features">
+                                <li>One-stop bill payment solution</li>
+                                <li>Automated payment reminders</li>
+                                <li>Fast and secure transactions</li>
+                                <li>Payment history tracking</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Pay Bills Now</a>
+                        </div>
+
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3>Online Shopping</h3>
+                            <p>Shop from your favorite online stores and pay securely with PhonePe. Enjoy cashback
+                                offers and discounts.</p>
+                            <ul class="solution-features">
+                                <li>Secure payment gateway</li>
+                                <li>Exclusive offers & cashback</li>
+                                <li>One-click checkout</li>
+                                <li>Wide merchant acceptance</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Start Shopping</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Solutions Tab -->
+                <div class="tab-content" id="business-tab">
+                    <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-purple);">
+                        Business Solutions
+                    </h2>
+
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3>Payment Gateway</h3>
+                            <p>Accept online payments on your website or app with our secure payment gateway. Support
+                                for all major payment methods.</p>
+                            <ul class="solution-features">
+                                <li>Easy integration</li>
+                                <li>Multiple payment options</li>
+                                <li>Advanced fraud protection</li>
+                                <li>Real-time reporting</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Get Started</a>
+                        </div>
+
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <h3>QR Code Payments</h3>
+                            <p>Accept payments from customers using QR codes. No hardware required, works with any
+                                smartphone.</p>
+                            <ul class="solution-features">
+                                <li>Static & dynamic QR codes</li>
+                                <li>Zero setup cost</li>
+                                <li>Instant settlements</li>
+                                <li>Transaction analytics</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Create QR Code</a>
+                        </div>
+
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Business Analytics</h3>
+                            <p>Get detailed insights into your sales, customer behavior, and payment patterns with our
+                                advanced analytics dashboard.</p>
+                            <ul class="solution-features">
+                                <li>Real-time sales tracking</li>
+                                <li>Customer insights</li>
+                                <li>Revenue forecasting</li>
+                                <li>Exportable reports</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">View Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Services Tab -->
+                <div class="tab-content" id="financial-tab">
+                    <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary-purple);">
+                        Financial Services
+                    </h2>
+
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Insurance</h3>
+                            <p>Buy comprehensive insurance plans for health, life, motor, and travel. Compare and choose
+                                the best plans at affordable prices.</p>
+                            <ul class="solution-features">
+                                <li>Health & life insurance</li>
+                                <li>Car & bike insurance</li>
+                                <li>Travel insurance</li>
+                                <li>Instant policy issuance</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Browse Plans</a>
+                        </div>
+
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3>Investments</h3>
+                            <p>Start your investment journey with mutual funds, stocks, gold, and more. Expert-curated
+                                portfolios for all risk appetites.</p>
+                            <ul class="solution-features">
+                                <li>Mutual funds & SIPs</li>
+                                <li>Digital gold</li>
+                                <li>Stocks & ETFs</li>
+                                <li>Tax-saving investments</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Start Investing</a>
+                        </div>
+
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h3>Loans & Credit</h3>
+                            <p>Get instant personal loans, credit cards, and buy now pay later options with minimal
+                                documentation and quick approval.</p>
+                            <ul class="solution-features">
+                                <li>Personal loans</li>
+                                <li>Credit cards</li>
+                                <li>Buy now, pay later</li>
+                                <li>Quick approval</li>
+                            </ul>
+                            <a href="#" class="btn" style="margin-top: auto;">Check Eligibility</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other tabs would follow similar structure -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Solutions Section -->
+    <section class="business-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Solutions for Every Business</h2>
+                <p>From small shops to large enterprises, we have solutions tailored for your business needs</p>
+            </div>
+
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-img">
+                        <i class="fas fa-store-alt"></i>
+                    </div>
+                    <div class="business-content">
+                        <h3>Small Businesses</h3>
+                        <p>Accept digital payments with QR codes, manage inventory, and track sales with our easy-to-use
+                            solutions designed for small shops and local businesses.</p>
+                        <a href="#" class="btn btn-outline">Explore Solutions</a>
+                    </div>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-img">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="business-content">
+                        <h3>Enterprises</h3>
+                        <p>Enterprise-grade payment solutions with advanced security, bulk payment processing, and
+                            custom integration options for large organizations.</p>
+                        <a href="#" class="btn btn-outline">Enterprise Solutions</a>
+                    </div>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-img">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="business-content">
+                        <h3>E-commerce</h3>
+                        <p>Seamless payment integration for online stores with multiple payment options, subscription
+                            billing, and international payment acceptance.</p>
+                        <a href="#" class="btn btn-outline">E-commerce Solutions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title" style="color: white;">
+                <h2>Our Impact in Numbers</h2>
+                <p>Trusted by millions across India</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number">500M+</span>
+                    <span class="stat-label">Registered Users</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">35M+</span>
+                    <span class="stat-label">Merchant Partners</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">₹10T+</span>
+                    <span class="stat-label">Annual Payment Volume</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">System Uptime</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Digital Payments?</h2>
+                <p>Join millions of users and businesses who trust PhonePe for their financial transactions. Whether
+                    you're an individual looking for seamless payments or a business wanting to grow, we have the right
+                    solution for you.</p>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn">
+                        <i class="fas fa-download"></i> Download PhonePe
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-headset"></i> Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Business Solutions</h3>
+                    <div class="footer-links">
+                        <a href="#">Payment Gateway</a>
+                        <a href="#">E-commerce PG</a>
+                        <a href="#">UPI Payment Gateway</a>
+                        <a href="#">Offline Merchant</a>
+                        <a href="#">Payment Links</a>
+                        <a href="#">Travel and Commute</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Insurance</h3>
+                    <div class="footer-links">
+                        <a href="#">Motor Insurance</a>
+                        <a href="#">Bike Insurance</a>
+                        <a href="#">Car Insurance</a>
+                        <a href="#">Health Insurance</a>
+                        <a href="#">Life Insurance</a>
+                        <a href="#">Travel Insurance</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Investments</h3>
+                    <div class="footer-links">
+                        <a href="#">24K Gold</a>
+                        <a href="#">Liquid Funds</a>
+                        <a href="#">Tax Saving Funds</a>
+                        <a href="#">Equity Funds</a>
+                        <a href="#">Debt Funds</a>
+                        <a href="#">Hybrid Funds</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>General</h3>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Investors Relations</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="complaint.html">Complaint</a>
+                        <a href="#" class="active">Our Solutions</a>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 PhonePe. All rights reserved</p>
+                <p style="margin-top: 10px; font-style: italic; font-weight: 100;">*Numbers are approximate and updated
+                    regularly</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const closeNav = document.getElementById('closeNav');
+        const mobileNav = document.getElementById('mobileNav');
+        const navOverlay = document.getElementById('navOverlay');
+
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeNav.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        navOverlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Tab Switching Functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                // Show corresponding tab content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        navOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Initialize with first tab active
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make sure first tab is active
+            if (tabButtons.length > 0 && !document.querySelector('.tab-btn.active')) {
+                tabButtons[0].classList.add('active');
+            }
+
+            if (tabContents.length > 0 && !document.querySelector('.tab-content.active')) {
+                tabContents[0].classList.add('active');
+            }
+
+            // Animate stats counter
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statsSection = document.querySelector('.stats-section');
+
+            const animateValue = (element, start, end, duration) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    element.textContent = formatNumber(value);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            const formatNumber = (num) => {
+                if (num >= 1000000000) {
+                    return (num / 1000000000).toFixed(1) + 'B+';
+                }
+                if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M+';
+                }
+                if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K+';
+                }
+                return num + '+';
+            };
+
+            // Observe when stats section comes into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate each stat
+                        statNumbers.forEach((stat, index) => {
+                            const text = stat.textContent;
+                            let targetValue = 0;
+
+                            if (text.includes('B')) {
+                                targetValue = parseFloat(text) * 1000000000;
+                            } else if (text.includes('M')) {
+                                targetValue = parseFloat(text) * 1000000;
+                            } else if (text.includes('T')) {
+                                targetValue = parseFloat(text) * 1000000000000;
+                            } else {
+                                targetValue = parseFloat(text);
+                            }
+
+                            setTimeout(() => {
+                                animateValue(stat, 0, targetValue, 2000);
+                            }, index * 300);
+                        });
+
+                        // Unobserve after animation
+                        observer.unobserve(statsSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(statsSection);
+        });
+    </script>
+</body>
+
+</html>

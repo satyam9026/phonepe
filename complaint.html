@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe - File a Complaint</title>
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0iIzVmMjU5ZiIvPjwvc3ZnPg==">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-purple: #5f259f;
+            --secondary-purple: #7d47ce;
+            --light-purple: #f5f0ff;
+            --dark-gray: #333;
+            --medium-gray: #666;
+            --light-gray: #f8f8f8;
+            --border-gray: #e0e0e0;
+            --white: #ffffff;
+            --black: #000000;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --success-green: #28a745;
+            --warning-orange: #ffc107;
+            --danger-red: #dc3545;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-purple);
+            color: white;
+        }
+
+        .btn-success {
+            background-color: var(--success-green);
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-red);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--dark-gray);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 36px;
+            width: auto;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-purple);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-purple);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 300px;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .close-nav {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .mobile-nav-links a.active {
+            color: var(--primary-purple);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-purple) 0%, #e8e0ff 100%);
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMEw2MDAgNDAwIiBzdHJva2U9IiM3RDQ3Q0UiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMjAgMjAiLz48cGF0aCBkPSJNMCAxMDBMNjAwIDUwMCIgc3Ryb2tlPSIjN0Q0N0NFIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjIwIDIwIi8+PC9zdmc+');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--danger-red);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Complaint Form Section */
+        .complaint-form-section {
+            padding: 60px 0;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .form-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-card h2 {
+            color: var(--primary-purple);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-purple);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 2px rgba(95, 37, 159, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .file-upload {
+            position: relative;
+            border: 2px dashed var(--border-gray);
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-purple);
+            background-color: var(--light-purple);
+        }
+
+        .file-upload input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload i {
+            font-size: 32px;
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+        }
+
+        .file-upload p {
+            margin-bottom: 5px;
+        }
+
+        .file-upload span {
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+
+        /* Complaint Status Check */
+        .status-check {
+            background-color: var(--light-purple);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .status-check h3 {
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+        }
+
+        .status-input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .status-input-group input {
+            flex: 1;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .status-input-group button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .status-result {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .status-result.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .status-icon.pending {
+            background-color: var(--warning-orange);
+        }
+
+        .status-icon.in-progress {
+            background-color: var(--primary-purple);
+        }
+
+        .status-icon.resolved {
+            background-color: var(--success-green);
+        }
+
+        .status-details p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .status-details strong {
+            color: var(--dark-gray);
+        }
+
+        /* Common Issues Section */
+        .common-issues {
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: var(--primary-purple);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-purple);
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .issue-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .issue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .issue-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-purple);
+            font-size: 24px;
+        }
+
+        .issue-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .issue-card p {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-gray);
+        }
+
+        .faq-question h3 {
+            margin-bottom: 0;
+            font-size: 18px;
+        }
+
+        .faq-toggle {
+            font-size: 20px;
+            color: var(--primary-purple);
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-purple);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                padding: 80px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-footer button {
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .form-card {
+                padding: 30px 20px;
+            }
+
+            .status-input-group {
+                flex-direction: column;
+            }
+
+            .status-input-group input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+
+            .status-input-group button {
+                border-radius: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .issues-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <svg class="logo-img" viewBox="0 0 132 48" fill="none">
+                    <circle cx="17.9" cy="24" r="17.9" fill="#5f259f" />
+                    <path
+                        d="M90.5 34.2v-6.5c0-1.6-.6-2.4-2.1-2.4-.6 0-1.3.1-1.7.2V35c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V23.9c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 5.6 1.9 5.6 5.4v7.4c0 .3-.3.6-.6.6H92c-.9 0-1.5-.7-1.5-1.5zm9-3.9l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H103.2v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zm25.5 2.2l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H128.6v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zM66 35.7h1.4c.3 0 .6-.3.6-.6v-7.4c0-3.4-1.8-5.4-4.8-5.4-.9 0-1.9.2-2.5.4V19c0-.8-.7-1.5-1.5-1.5h-1.4c-.3 0-.6.3-.6.6v17c0 .3.3.6.6.6h2.3c.3 0 .6-.3.6-.6v-9.4c.5-.2 1.2-.3 1.7-.3 1.5 0 2.1.7 2.1 2.4v6.5c.1.7.7 1.4 1.5 1.4zm15.1-8.4V31c0 3.1-2.1 5-5.6 5-3.4 0-5.6-1.9-5.6-5v-3.7c0-3.1 2.1-5 5.6-5 3.5 0 5.6 1.9 5.6 5zm-3.5 0c0-1.2-.7-2-2-2s-2 .7-2 2V31c0 1.2.7 1.9 2 1.9s2-.7 2-1.9v-3.7zm-22.3-1.7c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zM51.7 23c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23zm68.2 2.6c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zm-3.6-2.6c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23z"
+                        fill="#5f259f" />
+                    <path
+                        d="M26 19.3c0-.7-.6-1.3-1.3-1.3h-2.4l-5.5-6.3c-.5-.6-1.3-.8-2.1-.6l-1.9.6c-.3.1-.4.5-.2.7l6 5.7H9.5c-.3 0-.5.2-.5.5v1c0 .7.6 1.3 1.3 1.3h1.4v4.8c0 3.6 1.9 5.7 5.1 5.7 1 0 1.8-.1 2.8-.5v3.2c0 .9.7 1.6 1.6 1.6h1.4c.3 0 .6-.3.6-.6V20.8h2.3c.3 0 .5-.2.5-.5v-1zm-6.4 8.6c-.6.3-1.4.4-2 .4-1.6 0-2.4-.8-2.4-2.6v-4.8h4.4v7z"
+                        fill="white" />
+                </svg>
+            </div>
+
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="complaint.html" class="active">Complaint</a></li>
+                    <li><a href="OurSolutions.html">Our Solutions</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="Trust&Safety.html">Trust & Safety</a></li>
+                    <li><a href="Registration.html">Registration</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <svg class="logo-img" viewBox="0 0 132 48" fill="none" style="height: 30px;">
+                    <circle cx="17.9" cy="24" r="17.9" fill="#5f259f" />
+                    <path
+                        d="M90.5 34.2v-6.5c0-1.6-.6-2.4-2.1-2.4-.6 0-1.3.1-1.7.2V35c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V23.9c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 5.6 1.9 5.6 5.4v7.4c0 .3-.3.6-.6.6H92c-.9 0-1.5-.7-1.5-1.5zm9-3.9l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H103.2v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zm25.5 2.2l-.1.9c0 1.2.8 1.9 2.1 1.9 1 0 1.9-.3 2.9-.8.1 0 .2-.1.3-.1.2 0 .3.1.4.2.1.1.3.4.3.4.2.3.4.7.4 1 0 .5-.3 1-.7 1.2-1.1.6-2.4.9-3.8.9-1.6 0-2.9-.4-3.9-1.2-1-.9-1.6-2.1-1.6-3.6v-3.9c0-3.1 2-5 5.4-5 3.3 0 5.2 1.8 5.2 5v2.4c0 .3-.3.6-.6.6h-6.3zm-.1-2.2H128.6v-1c0-1.2-.7-2-1.9-2s-1.9.7-1.9 2v1zM66 35.7h1.4c.3 0 .6-.3.6-.6v-7.4c0-3.4-1.8-5.4-4.8-5.4-.9 0-1.9.2-2.5.4V19c0-.8-.7-1.5-1.5-1.5h-1.4c-.3 0-.6.3-.6.6v17c0 .3.3.6.6.6h2.3c.3 0 .6-.3.6-.6v-9.4c.5-.2 1.2-.3 1.7-.3 1.5 0 2.1.7 2.1 2.4v6.5c.1.7.7 1.4 1.5 1.4zm15.1-8.4V31c0 3.1-2.1 5-5.6 5-3.4 0-5.6-1.9-5.6-5v-3.7c0-3.1 2.1-5 5.6-5 3.5 0 5.6 1.9 5.6 5zm-3.5 0c0-1.2-.7-2-2-2s-2 .7-2 2V31c0 1.2.7 1.9 2 1.9s2-.7 2-1.9v-3.7zm-22.3-1.7c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zM51.7 23c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23zm68.2 2.6c0 3.2-2.4 5.4-5.6 5.4-.8 0-1.5-.1-2.2-.4v4.5c0 .3-.3.6-.6.6h-2.3c-.3 0-.6-.3-.6-.6V19.2c0-.4.3-.7.6-.8 1.5-.5 3-.8 4.6-.8 3.6 0 6.1 2.2 6.1 5.6v2.4zm-3.6-2.6c0-1.6-1.1-2.4-2.6-2.4-.9 0-1.5.3-1.5.3v6.6c.6.3.9.4 1.6.4 1.5 0 2.6-.9 2.6-2.4V23z"
+                        fill="#5f259f" />
+                    <path
+                        d="M26 19.3c0-.7-.6-1.3-1.3-1.3h-2.4l-5.5-6.3c-.5-.6-1.3-.8-2.1-.6l-1.9.6c-.3.1-.4.5-.2.7l6 5.7H9.5c-.3 0-.5.2-.5.5v1c0 .7.6 1.3 1.3 1.3h1.4v4.8c0 3.6 1.9 5.7 5.1 5.7 1 0 1.8-.1 2.8-.5v3.2c0 .9.7 1.6 1.6 1.6h1.4c.3 0 .6-.3.6-.6V20.8h2.3c.3 0 .5-.2.5-.5v-1zm-6.4 8.6c-.6.3-1.4.4-2 .4-1.6 0-2.4-.8-2.4-2.6v-4.8h4.4v7z"
+                        fill="white" />
+                </svg>
+            </div>
+            <div class="close-nav" id="closeNav">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="complaint.html" class="active">Complaint</a></li>
+            <li><a href="OurSolutions.html">Our Solutions</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="Trust&Safety.html">Trust & Safety</a></li>
+            <li><a href="Registration.html">Registration</a></li>
+        </ul>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>File a Complaint</h1>
+                <p>We take every complaint seriously. Report issues with transactions, payments, account access, or any
+                    other concerns. Our team will investigate and resolve your complaint as soon as possible.</p>
+                <a href="#complaint-form" class="btn">File Complaint Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complaint Form Section -->
+    <section class="complaint-form-section" id="complaint-form">
+        <div class="container">
+            <div class="form-container">
+                <!-- Complaint Form -->
+                <div class="form-card">
+                    <h2>File a Complaint</h2>
+                    <form id="complaintForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="complaint-type">Complaint Type *</label>
+                            <select id="complaint-type" class="form-control" required>
+                                <option value="">Select complaint type</option>
+                                <option value="transaction">Transaction Issue</option>
+                                <option value="payment">Failed Payment</option>
+                                <option value="refund">Refund Not Received</option>
+                                <option value="account">Account Access Issue</option>
+                                <option value="merchant">Merchant Dispute</option>
+                                <option value="fraud">Suspected Fraud</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transaction-id">Transaction ID (if applicable)</label>
+                            <input type="text" id="transaction-id" class="form-control"
+                                placeholder="Enter transaction ID">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="complaint-details">Complaint Details *</label>
+                            <textarea id="complaint-details" class="form-control"
+                                placeholder="Please provide detailed information about your complaint..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Upload Supporting Documents (optional)</label>
+                            <div class="file-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload files</p>
+                                <span>Supported formats: JPG, PNG, PDF (Max 5MB)</span>
+                                <input type="file" id="file-upload" accept=".jpg,.jpeg,.png,.pdf">
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">I agree to the terms and conditions</label>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Submit Complaint</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Complaint Status Check -->
+                <div class="status-check">
+                    <h3>Check Complaint Status</h3>
+                    <p>Already filed a complaint? Enter your complaint ID to check the status.</p>
+
+                    <div class="status-input-group">
+                        <input type="text" id="complaint-id" class="form-control" placeholder="Enter Complaint ID">
+                        <button id="check-status" class="btn">Check Status</button>
+                    </div>
+
+                    <div class="status-result" id="statusResult">
+                        <div class="status-header">
+                            <div class="status-icon in-progress">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Complaint #CPL-2023-4892</h4>
+                                <p>Status: <strong>In Progress</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="status-details">
+                            <p><strong>Type:</strong> Failed Payment</p>
+                            <p><strong>Filed on:</strong> October 15, 2023</p>
+                            <p><strong>Expected resolution:</strong> October 22, 2023</p>
+                            <p><strong>Assigned to:</strong> Support Team Member</p>
+                            <p><strong>Last update:</strong> October 18, 2023 - Investigation in progress</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <h4>Need Immediate Help?</h4>
+                        <p>For urgent matters, call our support team:</p>
+                        <a href="tel:18001081122" class="btn" style="margin-top: 10px;">
+                            <i class="fas fa-phone-alt"></i> Call 1800-108-1122
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Issues Section -->
+    <section class="common-issues">
+        <div class="container">
+            <div class="section-title">
+                <h2>Common Issues</h2>
+                <p>Quick resolutions for frequently reported problems</p>
+            </div>
+
+            <div class="issues-grid">
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Failed Transaction</h3>
+                    <p>Money debited but transaction failed? Check status in 2 hours. If not reversed, file a complaint
+                        with transaction ID.</p>
+                    <a href="#complaint-form" class="btn btn-outline">Report Now</a>
+                </div>
+
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>Refund Not Received</h3>
+                    <p>Refunds typically take 5-7 business days. If you haven't received it within this period, file a
+                        complaint with details.</p>
+                    <a href="#complaint-form" class="btn btn-outline">Report Now</a>
+                </div>
+
+                <div class="issue-card">
+                    <div class="issue-icon">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <h3>Account Access Issue</h3>
+                    <p>Can't access your account? Try resetting your password. If the problem persists, report it for
+                        immediate assistance.</p>
+                    <a href="#complaint-form" class="btn btn-outline">Report Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions about the complaint process</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does it take to resolve a complaint?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most complaints are resolved within 7-10 business days. However, complex issues may take
+                            longer. We'll keep you updated throughout the process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What information do I need to file a complaint?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Please have the following ready: Your registered phone number/email, transaction ID (if
+                            applicable), details of the issue, and any supporting documents like screenshots.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I track the status of my complaint?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, once you file a complaint, you'll receive a unique complaint ID. You can use this ID to
+                            track the status on this page or through the PhonePe app.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What happens after I submit a complaint?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll receive an acknowledgment with your complaint ID. Our team will review your case,
+                            investigate, and contact you for any additional information. You'll be notified once
+                            resolved.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What should I do if I suspect fraudulent activity?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Immediately file a complaint and select "Suspected Fraud" as the complaint type. Also,
+                            contact your bank to secure your account and change your PhonePe PIN.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Business Solutions</h3>
+                    <div class="footer-links">
+                        <a href="#">Payment Gateway</a>
+                        <a href="#">E-commerce PG</a>
+                        <a href="#">UPI Payment Gateway</a>
+                        <a href="#">Offline Merchant</a>
+                        <a href="#">Payment Links</a>
+                        <a href="#">Travel and Commute</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Insurance</h3>
+                    <div class="footer-links">
+                        <a href="#">Motor Insurance</a>
+                        <a href="#">Bike Insurance</a>
+                        <a href="#">Car Insurance</a>
+                        <a href="#">Health Insurance</a>
+                        <a href="#">Life Insurance</a>
+                        <a href="#">Travel Insurance</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Investments</h3>
+                    <div class="footer-links">
+                        <a href="#">24K Gold</a>
+                        <a href="#">Liquid Funds</a>
+                        <a href="#">Tax Saving Funds</a>
+                        <a href="#">Equity Funds</a>
+                        <a href="#">Debt Funds</a>
+                        <a href="#">Hybrid Funds</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>General</h3>
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Investors Relations</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="#" class="active">Complaint</a>
+                        <a href="#">Blog</a>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 PhonePe. All rights reserved</p>
+                <p style="margin-top: 10px; font-style: italic; font-weight: 100;">*Complaints are typically resolved
+                    within 7-10 business days</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const closeNav = document.getElementById('closeNav');
+        const mobileNav = document.getElementById('mobileNav');
+        const navOverlay = document.getElementById('navOverlay');
+
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeNav.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        navOverlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // FAQ Toggle Functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle i');
+
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    if (item !== answer) {
+                        item.classList.remove('active');
+                        item.previousElementSibling.querySelector('.faq-toggle i').classList.remove('fa-chevron-up');
+                        item.previousElementSibling.querySelector('.faq-toggle i').classList.add('fa-chevron-down');
+                    }
+                });
+
+                // Toggle current FAQ
+                answer.classList.toggle('active');
+                if (answer.classList.contains('active')) {
+                    toggle.classList.remove('fa-chevron-down');
+                    toggle.classList.add('fa-chevron-up');
+                } else {
+                    toggle.classList.remove('fa-chevron-up');
+                    toggle.classList.add('fa-chevron-down');
+                }
+            });
+        });
+
+        // Complaint Form Submission
+        const complaintForm = document.getElementById('complaintForm');
+        complaintForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const complaintType = document.getElementById('complaint-type').value;
+
+            // Generate a random complaint ID
+            const complaintId = 'CPL-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+
+            // Show success message (in a real application, this would be an AJAX call to a server)
+            alert(`Thank you ${name}! Your complaint has been submitted successfully.\n\nComplaint ID: ${complaintId}\n\nWe have sent a confirmation to ${email}. Our team will review your ${complaintType} complaint and get back to you within 24 hours.`);
+
+            // Reset form
+            complaintForm.reset();
+        });
+
+        // Check Complaint Status
+        const checkStatusBtn = document.getElementById('check-status');
+        const statusResult = document.getElementById('statusResult');
+
+        checkStatusBtn.addEventListener('click', function () {
+            const complaintId = document.getElementById('complaint-id').value;
+
+            if (!complaintId) {
+                alert('Please enter a complaint ID');
+                return;
+            }
+
+            // In a real application, this would check against a database
+            // For demo purposes, we'll show the result
+            statusResult.classList.add('active');
+
+            // Scroll to the result
+            statusResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        navOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+        });
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // File upload preview
+        const fileUpload = document.getElementById('file-upload');
+        fileUpload.addEventListener('change', function () {
+            const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            const uploadArea = this.parentElement;
+            uploadArea.querySelector('p').textContent = fileName;
+
+            // Validate file size (5MB limit)
+            if (this.files[0] && this.files[0].size > 5 * 1024 * 1024) {
+                alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                this.value = '';
+                uploadArea.querySelector('p').textContent = 'Click to upload files';
+            }
+        });
+    </script>
+</body>
+
+</html>
